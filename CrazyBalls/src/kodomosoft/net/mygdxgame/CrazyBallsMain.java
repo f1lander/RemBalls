@@ -1,105 +1,172 @@
 package kodomosoft.net.mygdxgame;
 
-import kodomosoft.net.mygdxgame.InputDYAListener;
+import sun.rmi.runtime.Log;
+import kodomosoft.net.mygdxgame.screen.AbstractScreen;
+import kodomosoft.net.mygdxgame.screen.Instructions;
+import kodomosoft.net.mygdxgame.screen.LevelScreen;
+import kodomosoft.net.mygdxgame.screen.MainScreen;
 
-import com.badlogic.gdx.ApplicationListener;
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.Preferences;
+import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
-public class CrazyBallsMain implements ApplicationListener {
-	private OrthographicCamera camera;
+/**
+ * Esta es la clase Principal o el Game;
+ * de aqui e de donde tomamos todo lo necesario para nustro juego
+ * */
+
+public class CrazyBallsMain extends Game {
+	
+	/****************VARIABLES DE INSTANCIA****************/
+	public static AssetManager MANAGER = new AssetManager();
 	private SpriteBatch batch;
-	private Texture texture;
-	public static Image btn1, btn2, btn3, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12;
-	private Texture button1, button2, button3, _l1, _l2, _l3, _l4, _l5, _l6, _l7, _l8, _l9, _l10, _l11, _l12;
-	private TextureRegion button1Txt, button2Txt, button3Txt, _L1, _L2, _L3, _L4, _L5, _L6, _L7, _L8, _L9, _L10, _L11, _L12;;
-	private Stage stg;
+	public final AbstractScreen LEVELS, MENU, INSTRUCTIONS;
+	private int Level=0;
+	public static Preferences prefs;
+	public static int countBallslevel;
+	public static int levelx;
+	public static Sound wavSound;
+	
+	/******************************************************/
+	
+	/*CONSTRUCTOR DE LA CLASE PRINCIPAL (EL GAME)*/
+	public CrazyBallsMain() {
+		LEVELS = new LevelScreen(this);
+		MENU = new MainScreen(this);
+		INSTRUCTIONS = new Instructions(this);
+	}
+	
+	void initPrefs()
+	{
+		prefs = Gdx.app.getPreferences("scores.txt");		
+	}
 	
 	@Override
-	public void create() {	
+	public void create() {
 		
-		//setScreen(new MenuScreen(this));
-		float w = Gdx.graphics.getWidth();
-		float h = Gdx.graphics.getHeight();
+		initPrefs();
 		
-		camera = new OrthographicCamera(1, h/w);
+		//Iniciamos nuestro Spritebatch, el que 
+		//vamos a usar en todo nuestro juego
 		batch = new SpriteBatch();
 		
-		Texture txt = new Texture("background.png");
-		txt.setFilter(TextureFilter.Linear, TextureFilter.Linear);
-		TextureRegion txtr = new TextureRegion(txt, 480, 800);
-		stg = new Stage();
-		Image img = new Image(txtr);
-		stg.addActor(img);
-		img.setFillParent(true);
-
-		button1 = new Texture("btnPlay.png");
-		button2 = new Texture("btnOptions.png");
-		button3 = new Texture("btnExit.png");
+		prefs.putBoolean("Level1",true);
+		prefs.flush();		
+		//Gdx.app.error("sds", "prefserror");
+		//Cargamos todos los recursos que nesesitaremos en el juego a nuestro AssetManager
 		
-		
+		wavSound = Gdx.audio.newSound(Gdx.files.internal("Pickup_remBall.wav"));
+		Sound menuSong = Gdx.audio.newSound(Gdx.files.internal("background.ogg"));
 
 		
-		button1.setFilter(TextureFilter.Linear, TextureFilter.Linear);
-		button2.setFilter(TextureFilter.Linear, TextureFilter.Linear);
-		button3.setFilter(TextureFilter.Linear, TextureFilter.Linear);
-
+		MANAGER.load("btnPlay.png", Texture.class); //playScreen
+		MANAGER.load("playScreen.png", Texture.class);
+		MANAGER.load("face1.png", Texture.class);
+		MANAGER.load("face2.png", Texture.class);
+		MANAGER.load("face3.png", Texture.class);
+		MANAGER.load("backButton.png", Texture.class);
+		MANAGER.load("background.png", Texture.class);
+		MANAGER.load("btnExit.png", Texture.class);
+		MANAGER.load("btnOptions.png", Texture.class);
+		MANAGER.load("levels.png", Texture.class);
+		MANAGER.load("instructions.png", Texture.class);
+		MANAGER.load("l1.png", Texture.class);
+		MANAGER.load("l2.png", Texture.class);
+		MANAGER.load("l3.png", Texture.class);
+		MANAGER.load("l4.png", Texture.class);
+		MANAGER.load("l5.png", Texture.class);
+		MANAGER.load("l6.png", Texture.class);
+		MANAGER.load("l7.png", Texture.class);
+		MANAGER.load("l8.png", Texture.class);
+		MANAGER.load("l9.png", Texture.class);
+		MANAGER.load("l10.png", Texture.class);
+		MANAGER.load("l11.png", Texture.class);
+		MANAGER.load("l12.png", Texture.class);
+		MANAGER.load("level1.png", Texture.class);
+		MANAGER.load("level2.png", Texture.class);
+		MANAGER.load("level3.png", Texture.class);
+		MANAGER.load("level4.png", Texture.class);
+		MANAGER.load("level5.png", Texture.class);
+		MANAGER.load("level6.png", Texture.class);
+		MANAGER.load("level7.png", Texture.class);
+		MANAGER.load("level8.png", Texture.class);
+		MANAGER.load("level9.png", Texture.class);
+		MANAGER.load("level10.png", Texture.class);
+		MANAGER.load("level11.png", Texture.class);
+		MANAGER.load("level12.png", Texture.class);
+		MANAGER.load("levelsBack.png", Texture.class);
+		MANAGER.load("retry.png", Texture.class);
 		
-		button1Txt = new TextureRegion(button1, 221, 89);
-		button2Txt = new TextureRegion(button2, 221, 89);
-		button3Txt = new TextureRegion(button3, 221, 89);
-
 		
-		btn1 = new Image(button1);
-		btn2 = new Image(button2);
-		btn3 = new Image(button3);
-
-
-		btn1.setPosition(129.5f, 410);
-		stg.addActor(btn1);
-		btn1.addListener(new InputDYAListener(btn1, 1));
 		
-		btn2.setPosition(129.5f,290);
-		stg.addActor(btn2);
-		btn2.addListener(new InputDYAListener(btn2, 2));
+		while(!MANAGER.update()){
+			//Todo lo que sea
+		}
 		
-		btn3.setPosition(129.5f, 170);
-		stg.addActor(btn3);
-		btn3.addListener(new InputDYAListener(btn3, 3));
-		Gdx.input.setInputProcessor(stg);
+		setScreen(MENU);
+		
+		menuSong.play();
+		menuSong.loop();
 				
 	}
 
 	@Override
 	public void dispose() {
+		super.dispose();
 		batch.dispose();
-		texture.dispose();
+		MANAGER.dispose();
 	}
-
-	@Override
-	public void render() {		
-		Gdx.gl.glClearColor(1, 1, 1, 1);
-		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-			
-		stg.draw();
+	
+	/**
+	 * Instancia el ivel Seleccionado por el Usuario segun el Boton Tocado
+	 * @this.Level=Level;
+	 * */
+	public void setLevel(int Level){
+		this.Level=Level;
 	}
-
-	@Override
-	public void resize(int width, int height) {
+	
+	/**
+	 * Recupera el Nivel en el Que se encuentra el Juego, 
+	 * para poder setear las reglas necesarias de cada nivel
+	 * y asi saber en que nivel estamos
+	 * @return Level;
+	 * */
+	public int getLevel(){
+		return Level;
 	}
-
+	
+	public int getBallLevel(){
+		int balls;
+			balls = this.Level*5;
+		return balls;
+	}
+	
+	/**
+	 * Recupera la instancia compartida de SpriteBatch
+	 * @return SpriteBatch en uso por el juego
+	 */
+	public SpriteBatch getSpriteBatch(){
+		return this.batch;
+	}
+	
+//	public void onBackPressed(){
+//	     // do something here and don't write super.onBackPressed()
+//	}
+	
 	@Override
 	public void pause() {
+		super.pause();
+		// TODO Auto-generated method stub
 	}
-
+	
 	@Override
 	public void resume() {
+		super.resume();
+		// TODO Auto-generated method stub
+
 	}
 }
