@@ -1,9 +1,5 @@
 package kodomosoft.net.mygdxgame.screen.levels;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 1b477b130d4bf2878ca2027c9d21504af74393c5
 import java.util.Random;
 
 import kodomosoft.net.mygdxgame.CrazyBallsMain;
@@ -11,16 +7,7 @@ import kodomosoft.net.mygdxgame.actor.ButtonImage;
 import kodomosoft.net.mygdxgame.actor.RemsBallActor;
 import kodomosoft.net.mygdxgame.listener.InputDYAListener;
 import kodomosoft.net.mygdxgame.screen.AbstractScreen;
-<<<<<<< HEAD
 import kodomosoft.net.mygdxgame.screen.LevelScreen;
-=======
-import kodomosoft.net.mygdxgame.CrazyBallsMain;
-import kodomosoft.net.mygdxgame.actor.RemsBallActor;
-import kodomosoft.net.mygdxgame.listener.InputDYAListener;
-import kodomosoft.net.mygdxgame.screen.AbstractScreen;
->>>>>>> 033bf79e1c5746ec0ba0a533c76a6f1d8c905421
-=======
->>>>>>> 1b477b130d4bf2878ca2027c9d21504af74393c5
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
@@ -37,8 +24,6 @@ public class PlayScreen extends AbstractScreen {
 					y = 0;
 	private int cantidad = 0,
 				contador = 0;
-<<<<<<< HEAD
-<<<<<<< HEAD
 	private Image backButton, retryBtn, level1Title;
 	
 	private int cont = 0;
@@ -48,18 +33,6 @@ public class PlayScreen extends AbstractScreen {
 	public PlayScreen(CrazyBallsMain game) {
 		super(game);
 		
-=======
-	
-
-	public PlayScreen(CrazyBallsMain game) {
-		super(game);
->>>>>>> 033bf79e1c5746ec0ba0a533c76a6f1d8c905421
-=======
-	private Image backButton, retryBtn, level1Title;
-
-	public PlayScreen(CrazyBallsMain game) {
-		super(game);
->>>>>>> 1b477b130d4bf2878ca2027c9d21504af74393c5
 	}
 
 	@Override
@@ -67,8 +40,6 @@ public class PlayScreen extends AbstractScreen {
 		stage =  new Stage(400, 800, true, game.getSpriteBatch());
 		Gdx.input.setInputProcessor(stage);
 		
-<<<<<<< HEAD
-<<<<<<< HEAD
 		this.LevelActual = LevelScreen.levelRules[game.getLevel()-1];
 		String BallsToLevels[] = this.LevelActual.split(",");
 		this.BallsToLevels=BallsToLevels;
@@ -76,22 +47,10 @@ public class PlayScreen extends AbstractScreen {
 		
 		//Crear Fondo
 		Texture txt = CrazyBallsMain.MANAGER.get("playScreen.png", Texture.class);
-=======
-		//Crear Fondo
-		Texture txt = CrazyBallsMain.MANAGER.get("background.png", Texture.class);
->>>>>>> 033bf79e1c5746ec0ba0a533c76a6f1d8c905421
-=======
-		//Crear Fondo
-		Texture txt = CrazyBallsMain.MANAGER.get("playScreen.png", Texture.class);
->>>>>>> 1b477b130d4bf2878ca2027c9d21504af74393c5
 		txt.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		TextureRegion txtr = new TextureRegion(txt, 480, 800);
 		Image img = new Image(txtr);
 		stage.addActor(img);
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 1b477b130d4bf2878ca2027c9d21504af74393c5
 
 		Texture bck = CrazyBallsMain.MANAGER.get("levelsBack.png", Texture.class);
 		bck.setFilter(TextureFilter.Linear, TextureFilter.Linear);
@@ -124,14 +83,7 @@ public class PlayScreen extends AbstractScreen {
 		CrazyBallsMain.countBallslevel = cantidad;
 		CrazyBallsMain.levelx = game.getLevel();
 		
-<<<<<<< HEAD
-=======
-		
 		cantidad = game.getLevel()*5;
-		
->>>>>>> 033bf79e1c5746ec0ba0a533c76a6f1d8c905421
-=======
->>>>>>> 1b477b130d4bf2878ca2027c9d21504af74393c5
 	}
 
 	@Override
@@ -143,24 +95,12 @@ public class PlayScreen extends AbstractScreen {
 		
 		if(contador<cantidad){
 			createBall();
-<<<<<<< HEAD
-<<<<<<< HEAD
 //			contador++;
-=======
-			contador++;
->>>>>>> 033bf79e1c5746ec0ba0a533c76a6f1d8c905421
-=======
-			contador++;
->>>>>>> 1b477b130d4bf2878ca2027c9d21504af74393c5
 		}
 		
 		stage.draw();
 	}
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-=======
 //	private void createBall2() {
 //		try{
 //			x = ((0.03f * stage.getWidth() + 
@@ -175,10 +115,6 @@ public class PlayScreen extends AbstractScreen {
 //			ball.setVelocidad(-200, 200);
 //			stage.addActor(ball);
 //	}
->>>>>>> 033bf79e1c5746ec0ba0a533c76a6f1d8c905421
-=======
-
->>>>>>> 1b477b130d4bf2878ca2027c9d21504af74393c5
 
 	//Metodo para crea nuevas pelotas
 	private void createBall(){
@@ -197,8 +133,6 @@ public class PlayScreen extends AbstractScreen {
 		}else if(y<100){
 			y += 110;
 		}
-<<<<<<< HEAD
-<<<<<<< HEAD
 		
 //		Random randomGenerator = new Random();
 //		int face = randomGenerator.nextInt(3 - 1 + 1) + 1;
@@ -225,23 +159,6 @@ public class PlayScreen extends AbstractScreen {
 		}else{
 			return face;
 		}
-=======
-		RemsBallActor ball = new RemsBallActor(x, y);
-		ball.setVelocidad(-300, 300);
-		stage.addActor(ball);
-		ball.addListener(new InputDYAListener(ball, -1));
->>>>>>> 033bf79e1c5746ec0ba0a533c76a6f1d8c905421
-=======
-		
-		Random randomGenerator = new Random();
-		int face = randomGenerator.nextInt(3 - 1 + 1) + 1;
-		
-		RemsBallActor ball = new RemsBallActor(x, y, face);
-		ball.setVelocidad(-300, 300);
-		stage.addActor(ball);
-		ball.addListener(new InputDYAListener(ball, -1, face, game));
->>>>>>> 1b477b130d4bf2878ca2027c9d21504af74393c5
-		
 	}
 
 	@Override
@@ -252,14 +169,8 @@ public class PlayScreen extends AbstractScreen {
 	@Override
 	public void hide() {
 		Gdx.input.setInputProcessor(null);
-<<<<<<< HEAD
-<<<<<<< HEAD
 		this.cont=0;
 		this.contador=0;
-=======
->>>>>>> 033bf79e1c5746ec0ba0a533c76a6f1d8c905421
-=======
->>>>>>> 1b477b130d4bf2878ca2027c9d21504af74393c5
 	}
 
 	@Override

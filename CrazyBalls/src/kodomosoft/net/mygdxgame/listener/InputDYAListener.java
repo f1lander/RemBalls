@@ -1,9 +1,5 @@
 package kodomosoft.net.mygdxgame.listener;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 1b477b130d4bf2878ca2027c9d21504af74393c5
 import javax.xml.bind.ParseConversionEvent;
 
 import kodomosoft.net.mygdxgame.CrazyBallsMain;
@@ -13,15 +9,10 @@ import kodomosoft.net.mygdxgame.screen.levels.PlayScreen;
 
 import com.badlogic.gdx.Gdx;
 
-<<<<<<< HEAD
-=======
 import kodomosoft.net.mygdxgame.CrazyBallsMain;
 import kodomosoft.net.mygdxgame.actor.RemsBallActor;
 
 import com.badlogic.gdx.Gdx;
->>>>>>> 033bf79e1c5746ec0ba0a533c76a6f1d8c905421
-=======
->>>>>>> 1b477b130d4bf2878ca2027c9d21504af74393c5
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
@@ -31,10 +22,10 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 <<<<<<< HEAD
  * InputDYAListener es una Clase que aï¿½ade un listener a los botones del menu principal
 =======
- * InputDYAListener es una Clase que añade un listener a los botones del menu principal
+ * InputDYAListener es una Clase que aï¿½ade un listener a los botones del menu principal
 >>>>>>> 033bf79e1c5746ec0ba0a533c76a6f1d8c905421
 =======
- * InputDYAListener es una Clase que añade un listener a los botones del menu principal
+ * InputDYAListener es una Clase que aï¿½ade un listener a los botones del menu principal
 >>>>>>> 1b477b130d4bf2878ca2027c9d21504af74393c5
  * o a las pelotipas del Juego, segun sea el indice; siendo:
  * -1: el listener para las pelotitas (las Destrulle)
@@ -50,10 +41,6 @@ public class InputDYAListener extends InputListener {
 	private CrazyBallsMain game;
 	private int selector; 
 	private RemsBallActor ball;
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 1b477b130d4bf2878ca2027c9d21504af74393c5
 	private int ballNumber;
 	private Actor btn;
 	private static int countRemoveBalls = 0;
@@ -66,18 +53,13 @@ public class InputDYAListener extends InputListener {
 			this.selector=slc;	
 			this.ballNumber = _ballNumber;
 			this.game=game;
-<<<<<<< HEAD
-=======
-	private Actor btn;
+		}
 	/**********************************/
 
 	//Constructor cuando es una pelota
 		public InputDYAListener(RemsBallActor ball, int slc) {
 			this.ball = ball;
 			this.selector=slc;
->>>>>>> 033bf79e1c5746ec0ba0a533c76a6f1d8c905421
-=======
->>>>>>> 1b477b130d4bf2878ca2027c9d21504af74393c5
 		}
 		
 	//Constructor Cuando es un Boton del Menu Principal (Actor)
@@ -90,10 +72,6 @@ public class InputDYAListener extends InputListener {
 		@Override
 		public boolean touchDown(InputEvent e,float x, float y, int pointer, int button)
 		{
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 1b477b130d4bf2878ca2027c9d21504af74393c5
 			if(selector!=-1 || selector == 4){
 				this.btn.setColor(1f, 0f, 0f, 0.5f);
 			}else{
@@ -125,16 +103,11 @@ public class InputDYAListener extends InputListener {
 				}
 			}
 			
-<<<<<<< HEAD
-=======
 			if(selector!=-1){
 				this.btn.setColor(1f, 0f, 0f, 0.5f);
 			}else{
 				this.ball.setColor(1f, 0f, 0f, 0.5f);
 			}
->>>>>>> 033bf79e1c5746ec0ba0a533c76a6f1d8c905421
-=======
->>>>>>> 1b477b130d4bf2878ca2027c9d21504af74393c5
 			return true;
 		}
 
@@ -142,10 +115,6 @@ public class InputDYAListener extends InputListener {
 		public void touchUp(InputEvent event, float x, float y, int pointer,
 				int button) {
 			switch(selector){
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 1b477b130d4bf2878ca2027c9d21504af74393c5
 		
 			case 0: game.setScreen(game.LEVELS); break;
 			case 1: game.setScreen(game.INSTRUCTIONS); break;
@@ -155,16 +124,6 @@ public class InputDYAListener extends InputListener {
 				game.setLevel(CrazyBallsMain.levelx);
 				game.setScreen(new PlayScreen(game));
 				break;
-<<<<<<< HEAD
-=======
-			case -1: ball.remove(); break;
-			case 0: game.setScreen(game.LEVELS); break;
-			case 1: game.setScreen(game.INSTRUCTIONS); break;
-			case 2: Gdx.app.exit(); break;
-			case 3: game.setScreen(game.MENU); break;
->>>>>>> 033bf79e1c5746ec0ba0a533c76a6f1d8c905421
-=======
->>>>>>> 1b477b130d4bf2878ca2027c9d21504af74393c5
 			}
 			super.touchUp(event, x, y, pointer, button);
 		}

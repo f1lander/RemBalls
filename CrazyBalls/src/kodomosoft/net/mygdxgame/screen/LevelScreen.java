@@ -22,10 +22,6 @@ public class LevelScreen extends AbstractScreen {
 	private ButtonImage imgl1;
 	private Image fondoLevels;
 	/********************************/
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 1b477b130d4bf2878ca2027c9d21504af74393c5
 	
 	/******Bolas
 	 
@@ -62,17 +58,6 @@ public class LevelScreen extends AbstractScreen {
 		levelRules[9] = "#Level1:1,2,3";
 		levelRules[10] = "#Level1:1,2,3";
 		levelRules[11] = "#Level1:1,2,3";
-		
-		
-<<<<<<< HEAD
-=======
-
-	/*CONSTRUCTOR DE LA PANTALLA DE NIVELES*/
-	public LevelScreen(CrazyBallsMain game) {
-		super(game);
->>>>>>> 033bf79e1c5746ec0ba0a533c76a6f1d8c905421
-=======
->>>>>>> 1b477b130d4bf2878ca2027c9d21504af74393c5
 	}
 
 	@Override
@@ -92,10 +77,6 @@ public class LevelScreen extends AbstractScreen {
 		int level = 1;
 		for (int i = 0; i < 12; i++) {
 			
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 1b477b130d4bf2878ca2027c9d21504af74393c5
 			
 				int wi = ii * 105;
 				
@@ -118,43 +99,17 @@ public class LevelScreen extends AbstractScreen {
 				level++;
 				ii++;
 			
-<<<<<<< HEAD
-=======
-			int wi = ii * 105;
-			
-			Texture l1t = CrazyBallsMain.MANAGER.get("l"+(i+1)+".png", Texture.class);
-			l1t.setFilter(TextureFilter.Linear, TextureFilter.Linear);
-			TextureRegion l1t1 = new TextureRegion(l1t, 100, 70);
-			
-			if(wi == 315){
-				he += 83;
-				wi = 0;
-				ii = 0;
-			}
-
-			imgl1 = new ButtonImage(l1t1, level);
-			imgl1.setPosition(80 + wi, 450 - he);
-			imgl1.addListener(new LevelsListener(imgl1, level, game));
-			stage.addActor(imgl1);
-			level++;
-			ii++;
->>>>>>> 033bf79e1c5746ec0ba0a533c76a6f1d8c905421
-=======
->>>>>>> 1b477b130d4bf2878ca2027c9d21504af74393c5
 		}
 		he=0; ii=0;
 
 		Texture bck = CrazyBallsMain.MANAGER.get("backButton.png", Texture.class);
 		bck.setFilter(TextureFilter.Linear, TextureFilter.Linear);
-<<<<<<< HEAD
-<<<<<<< HEAD
-		TextureRegion bck1 = new TextureRegion(bck, 55, 44);
-=======
+
+//		TextureRegion bck1 = new TextureRegion(bck, 55, 44);
+
 		TextureRegion bck1 = new TextureRegion(bck, 80, 54);
->>>>>>> 033bf79e1c5746ec0ba0a533c76a6f1d8c905421
-=======
-		TextureRegion bck1 = new TextureRegion(bck, 55, 44);
->>>>>>> 1b477b130d4bf2878ca2027c9d21504af74393c5
+
+//		TextureRegion bck1 = new TextureRegion(bck, 55, 44);
 		backButton = new Image(bck1);
 		backButton.addListener(new InputDYAListener(backButton, game, 3));
 		backButton.setPosition(50, 80);
@@ -184,10 +139,6 @@ public class LevelScreen extends AbstractScreen {
 	public void dispose() {
 		stage.dispose();
 	}
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-=======
 	
 //	ButtonImage getLevelButton(int level)
 //	{
@@ -195,9 +146,4 @@ public class LevelScreen extends AbstractScreen {
 //		button.addListener(new LevelsListener(button, level, game));
 //		return button;
 //	}
->>>>>>> 033bf79e1c5746ec0ba0a533c76a6f1d8c905421
-=======
-
->>>>>>> 1b477b130d4bf2878ca2027c9d21504af74393c5
-
 }
