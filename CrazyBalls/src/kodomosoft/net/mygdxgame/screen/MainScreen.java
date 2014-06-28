@@ -45,11 +45,15 @@ public class MainScreen extends AbstractScreen {
 		
 		btn2 = new ButtonActor(2, game);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 1b477b130d4bf2878ca2027c9d21504af74393c5
 		btn2.setPosition(stg.getWidth()/2 - btn2.getWidth()/2, ((stg.getHeight()/2 - btn2.getHeight()/2) + 5));
 		stg.addActor(btn2);
 		
 		btn3 = new ButtonActor(3, game);
 		btn3.setPosition(stg.getWidth()/2 - btn3.getWidth()/2, ((stg.getHeight()/2 - btn3.getHeight()*1.5f) + 5));
+<<<<<<< HEAD
 =======
 		btn2.setPosition(stg.getWidth()/2 - btn2.getWidth()/2, stg.getHeight()/2 - btn2.getHeight()/2);
 		stg.addActor(btn2);
@@ -57,6 +61,8 @@ public class MainScreen extends AbstractScreen {
 		btn3 = new ButtonActor(3, game);
 		btn3.setPosition(stg.getWidth()/2 - btn3.getWidth()/2, stg.getHeight()/2 - btn3.getHeight()*1.5f);
 >>>>>>> 033bf79e1c5746ec0ba0a533c76a6f1d8c905421
+=======
+>>>>>>> 1b477b130d4bf2878ca2027c9d21504af74393c5
 		stg.addActor(btn3);
 		
 	

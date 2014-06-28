@@ -23,6 +23,9 @@ public class LevelScreen extends AbstractScreen {
 	private Image fondoLevels;
 	/********************************/
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 1b477b130d4bf2878ca2027c9d21504af74393c5
 	
 	/******Bolas
 	 
@@ -61,12 +64,15 @@ public class LevelScreen extends AbstractScreen {
 		levelRules[11] = "#Level1:1,2,3";
 		
 		
+<<<<<<< HEAD
 =======
 
 	/*CONSTRUCTOR DE LA PANTALLA DE NIVELES*/
 	public LevelScreen(CrazyBallsMain game) {
 		super(game);
 >>>>>>> 033bf79e1c5746ec0ba0a533c76a6f1d8c905421
+=======
+>>>>>>> 1b477b130d4bf2878ca2027c9d21504af74393c5
 	}
 
 	@Override
@@ -87,6 +93,9 @@ public class LevelScreen extends AbstractScreen {
 		for (int i = 0; i < 12; i++) {
 			
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 1b477b130d4bf2878ca2027c9d21504af74393c5
 			
 				int wi = ii * 105;
 				
@@ -109,6 +118,7 @@ public class LevelScreen extends AbstractScreen {
 				level++;
 				ii++;
 			
+<<<<<<< HEAD
 =======
 			int wi = ii * 105;
 			
@@ -129,16 +139,22 @@ public class LevelScreen extends AbstractScreen {
 			level++;
 			ii++;
 >>>>>>> 033bf79e1c5746ec0ba0a533c76a6f1d8c905421
+=======
+>>>>>>> 1b477b130d4bf2878ca2027c9d21504af74393c5
 		}
 		he=0; ii=0;
 
 		Texture bck = CrazyBallsMain.MANAGER.get("backButton.png", Texture.class);
 		bck.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		TextureRegion bck1 = new TextureRegion(bck, 55, 44);
 =======
 		TextureRegion bck1 = new TextureRegion(bck, 80, 54);
 >>>>>>> 033bf79e1c5746ec0ba0a533c76a6f1d8c905421
+=======
+		TextureRegion bck1 = new TextureRegion(bck, 55, 44);
+>>>>>>> 1b477b130d4bf2878ca2027c9d21504af74393c5
 		backButton = new Image(bck1);
 		backButton.addListener(new InputDYAListener(backButton, game, 3));
 		backButton.setPosition(50, 80);
@@ -169,6 +185,7 @@ public class LevelScreen extends AbstractScreen {
 		stage.dispose();
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 	
@@ -179,5 +196,8 @@ public class LevelScreen extends AbstractScreen {
 //		return button;
 //	}
 >>>>>>> 033bf79e1c5746ec0ba0a533c76a6f1d8c905421
+=======
+
+>>>>>>> 1b477b130d4bf2878ca2027c9d21504af74393c5
 
 }

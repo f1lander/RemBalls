@@ -2,10 +2,15 @@
 package kodomosoft.net.mygdxgame.screen;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 import java.util.Random;
 
 =======
 >>>>>>> 033bf79e1c5746ec0ba0a533c76a6f1d8c905421
+=======
+import java.util.Random;
+
+>>>>>>> 1b477b130d4bf2878ca2027c9d21504af74393c5
 import kodomosoft.net.mygdxgame.CrazyBallsMain;
 import kodomosoft.net.mygdxgame.actor.RemsBallActor;
 
@@ -79,15 +84,21 @@ public class ActionScreen extends AbstractScreen {
 			
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 1b477b130d4bf2878ca2027c9d21504af74393c5
 		
 		
 		Random randomGenerator = new Random();
 		int face = randomGenerator.nextInt(3 - 1 + 1) + 1;
 		
 		RemsBallActor ball = new RemsBallActor(x, y, face);
+<<<<<<< HEAD
 =======
 		RemsBallActor ball = new RemsBallActor(x, y);
 >>>>>>> 033bf79e1c5746ec0ba0a533c76a6f1d8c905421
+=======
+>>>>>>> 1b477b130d4bf2878ca2027c9d21504af74393c5
 		ball.setVelocidad(-300, 300);
 		stage.addActor(ball);
 	}

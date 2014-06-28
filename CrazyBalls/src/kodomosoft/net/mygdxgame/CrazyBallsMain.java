@@ -1,9 +1,13 @@
 package kodomosoft.net.mygdxgame;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 import sun.rmi.runtime.Log;
 =======
 >>>>>>> 033bf79e1c5746ec0ba0a533c76a6f1d8c905421
+=======
+import sun.rmi.runtime.Log;
+>>>>>>> 1b477b130d4bf2878ca2027c9d21504af74393c5
 import kodomosoft.net.mygdxgame.screen.AbstractScreen;
 import kodomosoft.net.mygdxgame.screen.Instructions;
 import kodomosoft.net.mygdxgame.screen.LevelScreen;
@@ -11,13 +15,19 @@ import kodomosoft.net.mygdxgame.screen.MainScreen;
 
 import com.badlogic.gdx.Game;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 1b477b130d4bf2878ca2027c9d21504af74393c5
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Sound;
+<<<<<<< HEAD
 =======
 import com.badlogic.gdx.assets.AssetManager;
 >>>>>>> 033bf79e1c5746ec0ba0a533c76a6f1d8c905421
+=======
+>>>>>>> 1b477b130d4bf2878ca2027c9d21504af74393c5
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
@@ -34,13 +44,19 @@ public class CrazyBallsMain extends Game {
 	public final AbstractScreen LEVELS, MENU, INSTRUCTIONS;
 	private int Level=0;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 1b477b130d4bf2878ca2027c9d21504af74393c5
 	public static Preferences prefs;
 	public static int countBallslevel;
 	public static int levelx;
 	public static Sound wavSound;
 	
+<<<<<<< HEAD
 =======
 >>>>>>> 033bf79e1c5746ec0ba0a533c76a6f1d8c905421
+=======
+>>>>>>> 1b477b130d4bf2878ca2027c9d21504af74393c5
 	/******************************************************/
 	
 	/*CONSTRUCTOR DE LA CLASE PRINCIPAL (EL GAME)*/
@@ -51,6 +67,9 @@ public class CrazyBallsMain extends Game {
 	}
 	
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 1b477b130d4bf2878ca2027c9d21504af74393c5
 	void initPrefs()
 	{
 		prefs = Gdx.app.getPreferences("scores.txt");		
@@ -61,16 +80,22 @@ public class CrazyBallsMain extends Game {
 		
 		initPrefs();
 		
+<<<<<<< HEAD
 =======
 	@Override
 	public void create() {
 		
 >>>>>>> 033bf79e1c5746ec0ba0a533c76a6f1d8c905421
+=======
+>>>>>>> 1b477b130d4bf2878ca2027c9d21504af74393c5
 		//Iniciamos nuestro Spritebatch, el que 
 		//vamos a usar en todo nuestro juego
 		batch = new SpriteBatch();
 		
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 1b477b130d4bf2878ca2027c9d21504af74393c5
 		prefs.putBoolean("Level1",true);
 		prefs.flush();		
 		//Gdx.app.error("sds", "prefserror");
@@ -85,11 +110,14 @@ public class CrazyBallsMain extends Game {
 		MANAGER.load("face1.png", Texture.class);
 		MANAGER.load("face2.png", Texture.class);
 		MANAGER.load("face3.png", Texture.class);
+<<<<<<< HEAD
 =======
 		//Cargamos todos los recursos que nesesitaremos en el juego a nuestro AssetManager
 		MANAGER.load("btnPlay.png", Texture.class);
 		MANAGER.load("face1.png", Texture.class);
 >>>>>>> 033bf79e1c5746ec0ba0a533c76a6f1d8c905421
+=======
+>>>>>>> 1b477b130d4bf2878ca2027c9d21504af74393c5
 		MANAGER.load("backButton.png", Texture.class);
 		MANAGER.load("background.png", Texture.class);
 		MANAGER.load("btnExit.png", Texture.class);
@@ -109,6 +137,9 @@ public class CrazyBallsMain extends Game {
 		MANAGER.load("l11.png", Texture.class);
 		MANAGER.load("l12.png", Texture.class);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 1b477b130d4bf2878ca2027c9d21504af74393c5
 		MANAGER.load("level1.png", Texture.class);
 		MANAGER.load("level2.png", Texture.class);
 		MANAGER.load("level3.png", Texture.class);
@@ -123,8 +154,11 @@ public class CrazyBallsMain extends Game {
 		MANAGER.load("level12.png", Texture.class);
 		MANAGER.load("levelsBack.png", Texture.class);
 		MANAGER.load("retry.png", Texture.class);
+<<<<<<< HEAD
 =======
 >>>>>>> 033bf79e1c5746ec0ba0a533c76a6f1d8c905421
+=======
+>>>>>>> 1b477b130d4bf2878ca2027c9d21504af74393c5
 		
 		
 		
@@ -134,11 +168,17 @@ public class CrazyBallsMain extends Game {
 		
 		setScreen(MENU);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		
 		menuSong.play();
 		menuSong.loop();
 =======
 >>>>>>> 033bf79e1c5746ec0ba0a533c76a6f1d8c905421
+=======
+		
+		menuSong.play();
+		menuSong.loop();
+>>>>>>> 1b477b130d4bf2878ca2027c9d21504af74393c5
 				
 	}
 
@@ -185,6 +225,9 @@ public class CrazyBallsMain extends Game {
 //	     // do something here and don't write super.onBackPressed()
 //	}
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 1b477b130d4bf2878ca2027c9d21504af74393c5
 	
 	@Override
 	public void pause() {
@@ -198,6 +241,9 @@ public class CrazyBallsMain extends Game {
 		// TODO Auto-generated method stub
 
 	}
+<<<<<<< HEAD
 =======
 >>>>>>> 033bf79e1c5746ec0ba0a533c76a6f1d8c905421
+=======
+>>>>>>> 1b477b130d4bf2878ca2027c9d21504af74393c5
 }
