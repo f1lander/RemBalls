@@ -23,14 +23,6 @@ public class LevelScreen extends AbstractScreen {
 	private Image fondoLevels;
 	/********************************/
 	
-	/******Bolas
-	 
-	 Amarilla = 1
-	 Azul = 2
-	 Roja = 3
-	 
-	*/
-	
 	/*Level1
 	 Objetivo:1,2,3
 	 Tiempo < 2 = 3 estrella,
@@ -38,26 +30,10 @@ public class LevelScreen extends AbstractScreen {
 	 Tiempo > 4 = 1 estrellas 
 	*/
 	
-	public static String levelRules[] = new String[12];
-	
-	
 	
 	/*CONSTRUCTOR DE LA PANTALLA DE NIVELES*/
 	public LevelScreen(CrazyBallsMain game) {
 		super(game);
-		
-		levelRules[0] = "1,2,3";
-		levelRules[1] = "1,1,3,2";
-		levelRules[2] = "1,2,2,3,3,2";		
-		levelRules[3] = "2,3,1,3,3,3,1,2";
-		levelRules[4] = "1,3,1,3,2,3,3,2,2,3";
-		levelRules[5] = "3,1,2,3,1,2,3,3,3,3,1,1";
-		levelRules[6] = "3,2,2,2,1,1,1,2,2,3,3,2,3,2,1";
-		levelRules[7] = "3,3,2,2,2,2,2,3,3,3,1,1,1,1,2,2,2";
-		levelRules[8] = "#Level1:1,2,3";
-		levelRules[9] = "#Level1:1,2,3";
-		levelRules[10] = "#Level1:1,2,3";
-		levelRules[11] = "#Level1:1,2,3";
 	}
 
 	@Override
@@ -105,11 +81,8 @@ public class LevelScreen extends AbstractScreen {
 		Texture bck = CrazyBallsMain.MANAGER.get("backButton.png", Texture.class);
 		bck.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 
-//		TextureRegion bck1 = new TextureRegion(bck, 55, 44);
-
 		TextureRegion bck1 = new TextureRegion(bck, 80, 54);
 
-//		TextureRegion bck1 = new TextureRegion(bck, 55, 44);
 		backButton = new Image(bck1);
 		backButton.addListener(new InputDYAListener(backButton, game, 3));
 		backButton.setPosition(50, 80);
@@ -137,13 +110,7 @@ public class LevelScreen extends AbstractScreen {
 
 	@Override
 	public void dispose() {
+		super.dispose();
 		stage.dispose();
 	}
-	
-//	ButtonImage getLevelButton(int level)
-//	{
-//		ButtonImage button = new ButtonImage(level);
-//		button.addListener(new LevelsListener(button, level, game));
-//		return button;
-//	}
 }

@@ -38,8 +38,6 @@ public class Instructions extends AbstractScreen {
 	
 		//Creamos el Boton de back para regresar al Menu Principal
 		img1 = new Image(bck1);
-//		img1.setPosition(50, 90);
-//		img1.setPosition(50, 80);
 		img1.setPosition(50, 90);
 		img1.addListener(new InputDYAListener(img1, game, 3));
 		stage.addActor(img1);
@@ -77,6 +75,7 @@ public class Instructions extends AbstractScreen {
 
 	@Override
 	public void dispose() {
+		super.dispose();
 		stage.dispose();
 	}
 

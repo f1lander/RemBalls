@@ -1,6 +1,5 @@
 package kodomosoft.net.mygdxgame;
 
-import sun.rmi.runtime.Log;
 import kodomosoft.net.mygdxgame.screen.AbstractScreen;
 import kodomosoft.net.mygdxgame.screen.Instructions;
 import kodomosoft.net.mygdxgame.screen.LevelScreen;
@@ -22,14 +21,16 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 public class CrazyBallsMain extends Game {
 	
 	/****************VARIABLES DE INSTANCIA****************/
-	public static AssetManager MANAGER = new AssetManager();
+	public static AssetManager MANAGER;// = new AssetManager();
 	private SpriteBatch batch;
 	public final AbstractScreen LEVELS, MENU, INSTRUCTIONS;
 	private int Level=0;
 	public static Preferences prefs;
 	public static int countBallslevel;
 	public static int levelx;
-	public static Sound wavSound;
+//	public static Sound wavSound, menuSong;
+	
+	public static String levelRules[] = new String[12];
 	/******************************************************/
 	
 	/*CONSTRUCTOR DE LA CLASE PRINCIPAL (EL GAME)*/
@@ -46,26 +47,27 @@ public class CrazyBallsMain extends Game {
 	
 	@Override
 	public void create() {
-	initPrefs();
-		//Iniciamos nuestro Spritebatch, el que 
-		//vamos a usar en todo nuestro juego
-		batch = new SpriteBatch();
-		
-		prefs.putBoolean("Level1",true);
-		prefs.flush();		
-		//Gdx.app.error("sds", "prefserror");
-		//Cargamos todos los recursos que nesesitaremos en el juego a nuestro AssetManager
-		
-		wavSound = Gdx.audio.newSound(Gdx.files.internal("Pickup_remBall.wav"));
-		Sound menuSong = Gdx.audio.newSound(Gdx.files.internal("background.ogg"));
+		initPrefs();
+		initLevelsRules();
 
+		// Iniciamos nuestro Spritebatch, el que
+		// vamos a usar en todo nuestro juego
+		batch = new SpriteBatch();
+
+		prefs.putBoolean("Level1", true);
+		prefs.flush();
+		// Gdx.app.error("sds", "prefserror");
+
+//		wavSound = Gdx.audio.newSound(Gdx.files.internal("Pickup_remBall.wav"));
+//		Sound menuSong = Gdx.audio.newSound(Gdx.files.internal("background.ogg"));
 		
-		MANAGER.load("btnPlay.png", Texture.class); //playScreen
+		// Cargamos todos los recursos que nesesitaremos en el juego a nuestro
+		// AssetManager
+		MANAGER = new AssetManager();
 		MANAGER.load("playScreen.png", Texture.class);
 		MANAGER.load("face1.png", Texture.class);
 		MANAGER.load("face2.png", Texture.class);
 		MANAGER.load("face3.png", Texture.class);
-		//Cargamos todos los recursos que nesesitaremos en el juego a nuestro AssetManager
 		MANAGER.load("btnPlay.png", Texture.class);
 		MANAGER.load("face1.png", Texture.class);
 		MANAGER.load("backButton.png", Texture.class);
@@ -100,18 +102,41 @@ public class CrazyBallsMain extends Game {
 		MANAGER.load("level12.png", Texture.class);
 		MANAGER.load("levelsBack.png", Texture.class);
 		MANAGER.load("retry.png", Texture.class);
-		
-		
-		
-		while(!MANAGER.update()){
-			//Todo lo que sea
+		MANAGER.load("Pickup_remBall.wav", Sound.class);
+		MANAGER.load("background.ogg", Sound.class);
+
+		while (!MANAGER.update()) {
+			// Todo lo que sea
 		}
-		
+
 		setScreen(MENU);
+
+//		menuSong.play();
+//		menuSong.loop();
+
+	}
+
+	private void initLevelsRules() {
+		/******Bolas
+		 
+		 Amarilla = 1
+		 Azul = 2
+		 Roja = 3
+		 
+		*/
 		
-		menuSong.play();
-		menuSong.loop();
-				
+		levelRules[0] = "1,2,3";
+		levelRules[1] = "1,1,3,2";
+		levelRules[2] = "1,2,2,3,3,2";		
+		levelRules[3] = "2,3,1,3,3,3,1,2";
+		levelRules[4] = "1,3,1,3,2,3,3,2,2,3";
+		levelRules[5] = "3,1,2,3,1,2,3,3,3,3,1,1";
+		levelRules[6] = "3,2,2,2,1,1,1,2,2,3,3,2,3,2,1";
+		levelRules[7] = "3,3,2,2,2,2,2,3,3,3,1,1,1,1,2,2,2";
+		levelRules[8] = "#Level1:1,2,3";
+		levelRules[9] = "#Level1:1,2,3";
+		levelRules[10] = "#Level1:1,2,3";
+		levelRules[11] = "#Level1:1,2,3";
 	}
 
 	@Override

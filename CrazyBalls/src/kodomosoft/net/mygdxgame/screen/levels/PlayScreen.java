@@ -1,10 +1,8 @@
 package kodomosoft.net.mygdxgame.screen.levels;
 
-import java.util.Random;
-
 import kodomosoft.net.mygdxgame.CrazyBallsMain;
-import kodomosoft.net.mygdxgame.actor.ButtonImage;
 import kodomosoft.net.mygdxgame.actor.RemsBallActor;
+import kodomosoft.net.mygdxgame.actor.TimerActor;
 import kodomosoft.net.mygdxgame.listener.InputDYAListener;
 import kodomosoft.net.mygdxgame.screen.AbstractScreen;
 import kodomosoft.net.mygdxgame.screen.LevelScreen;
@@ -13,6 +11,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
@@ -25,6 +24,8 @@ public class PlayScreen extends AbstractScreen {
 	private int cantidad = 0,
 				contador = 0;
 	private Image backButton, retryBtn, level1Title;
+	
+	private TimerActor time;
 	
 	private int cont = 0;
 	private String LevelActual;
@@ -40,7 +41,7 @@ public class PlayScreen extends AbstractScreen {
 		stage =  new Stage(400, 800, true, game.getSpriteBatch());
 		Gdx.input.setInputProcessor(stage);
 		
-		this.LevelActual = LevelScreen.levelRules[game.getLevel()-1];
+		this.LevelActual = CrazyBallsMain.levelRules[game.getLevel()-1];
 		String BallsToLevels[] = this.LevelActual.split(",");
 		this.BallsToLevels=BallsToLevels;
 		this.cont=0;
@@ -82,6 +83,11 @@ public class PlayScreen extends AbstractScreen {
 		
 		CrazyBallsMain.countBallslevel = cantidad;
 		CrazyBallsMain.levelx = game.getLevel();
+		
+		// Aniadimos el Timer
+		time = new TimerActor(new BitmapFont());
+		time.setPosition(15, stage.getHeight()/2);
+		stage.addActor(time);
 		
 		cantidad = game.getLevel()*5;
 	}
@@ -134,23 +140,17 @@ public class PlayScreen extends AbstractScreen {
 			y += 110;
 		}
 		
-//		Random randomGenerator = new Random();
-//		int face = randomGenerator.nextInt(3 - 1 + 1) + 1;
 		int face = generateFaceBall();
 		if(face>0){
 			RemsBallActor ball = new RemsBallActor(x, y, face);
 			ball.setVelocidad(-300, 300);
 			stage.addActor(ball);
 			ball.addListener(new InputDYAListener(ball, -1, face, game));
-//			if(cont>=BallsToLevels.length){
 			contador++;
-//			}
 		}
 	}
 	
 	private int generateFaceBall(){
-//		Random randomGenerator = new Random();
-//		int face = randomGenerator.nextInt(3 - 1 + 1) + 1;
 		int face = (int) (4 * Math.random());
 		if(cont<BallsToLevels.length){
 			face = Integer.parseInt(BallsToLevels[cont]);
@@ -164,6 +164,8 @@ public class PlayScreen extends AbstractScreen {
 	@Override
 	public void resize(int width, int height) {
 		stage.setViewport(400, 800, true);
+		
+		time.setPosition(15, stage.getHeight()/2);
 	}
 
 	@Override

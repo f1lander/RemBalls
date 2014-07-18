@@ -4,6 +4,7 @@ import kodomosoft.net.mygdxgame.CrazyBallsMain;
 import kodomosoft.net.mygdxgame.actor.ButtonActor;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -16,6 +17,8 @@ public class MainScreen extends AbstractScreen {
 	private ButtonActor btn1, btn2, btn3;
 	private Stage stg;
 	private Image fondo;
+	
+	private Sound wavSound, menuSong;
 	/***************************************/
 
 	/*CONSTRUCTOR DE LA PANTALLA DEL MENU PRINCIPAL*/
@@ -30,11 +33,15 @@ public class MainScreen extends AbstractScreen {
 		stg = new Stage(400, 800, true, game.getSpriteBatch());
 		Gdx.input.setInputProcessor(stg);
 		
+		// Inicializamos los sonidos
+		menuSong = CrazyBallsMain.MANAGER.get("background.ogg", Sound.class);
+		menuSong.loop();
+		menuSong.play();
+		
 		//Creamos el Fondo
 		Texture txt = CrazyBallsMain.MANAGER.get("background.png", Texture.class);
 		txt.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		TextureRegion txtr = new TextureRegion(txt, 480, 800);
-		
 		fondo = new Image(txtr);
 		stg.addActor(fondo);
 		
@@ -67,10 +74,12 @@ public class MainScreen extends AbstractScreen {
 	@Override
 	public void hide() {
 		Gdx.input.setInputProcessor(null);
+		menuSong.stop();
 	}
 	
 	@Override
 	public void dispose() {
+		super.dispose();
 		stg.dispose();
 	}
 }

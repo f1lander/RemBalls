@@ -1,32 +1,17 @@
 package kodomosoft.net.mygdxgame.listener;
 
-import javax.xml.bind.ParseConversionEvent;
-
 import kodomosoft.net.mygdxgame.CrazyBallsMain;
 import kodomosoft.net.mygdxgame.actor.RemsBallActor;
-import kodomosoft.net.mygdxgame.screen.LevelScreen;
 import kodomosoft.net.mygdxgame.screen.levels.PlayScreen;
 
 import com.badlogic.gdx.Gdx;
-
-import kodomosoft.net.mygdxgame.CrazyBallsMain;
-import kodomosoft.net.mygdxgame.actor.RemsBallActor;
-
-import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 
 /**
-<<<<<<< HEAD
-<<<<<<< HEAD
  * InputDYAListener es una Clase que a�ade un listener a los botones del menu principal
-=======
- * InputDYAListener es una Clase que a�ade un listener a los botones del menu principal
->>>>>>> 033bf79e1c5746ec0ba0a533c76a6f1d8c905421
-=======
- * InputDYAListener es una Clase que a�ade un listener a los botones del menu principal
->>>>>>> 1b477b130d4bf2878ca2027c9d21504af74393c5
  * o a las pelotipas del Juego, segun sea el indice; siendo:
  * -1: el listener para las pelotitas (las Destrulle)
  * 0: Cambia a la Screen de Niveles
@@ -43,6 +28,7 @@ public class InputDYAListener extends InputListener {
 	private RemsBallActor ball;
 	private int ballNumber;
 	private Actor btn;
+	private Sound wavSound;
 	private static int countRemoveBalls = 0;
 	private static int rulesArray = 0;
 	/**********************************/
@@ -53,6 +39,7 @@ public class InputDYAListener extends InputListener {
 			this.selector=slc;	
 			this.ballNumber = _ballNumber;
 			this.game=game;
+			wavSound = CrazyBallsMain.MANAGER.get("Pickup_remBall.wav", Sound.class);
 		}
 	/**********************************/
 
@@ -75,12 +62,13 @@ public class InputDYAListener extends InputListener {
 			if(selector!=-1 || selector == 4){
 				this.btn.setColor(1f, 0f, 0f, 0.5f);
 			}else{
+				this.ball.setColor(1f, 0f, 0f, 0.5f);
 				
-				CrazyBallsMain.wavSound.play();
+				wavSound.play();
 				ball.remove(); 
 				InputDYAListener.countRemoveBalls++; //acumulo las pelotas que se van quitando 
 				
-				String comprension = LevelScreen.levelRules[(CrazyBallsMain.levelx - 1)];
+				String comprension = CrazyBallsMain.levelRules[(CrazyBallsMain.levelx - 1)];
 				String amor[] = comprension.split(",");
 				
 				System.out.print(Integer.parseInt(amor[rulesArray]));
@@ -102,12 +90,6 @@ public class InputDYAListener extends InputListener {
 					rulesArray = 0;
 				}
 			}
-			
-			if(selector!=-1){
-				this.btn.setColor(1f, 0f, 0f, 0.5f);
-			}else{
-				this.ball.setColor(1f, 0f, 0f, 0.5f);
-			}
 			return true;
 		}
 
@@ -118,7 +100,7 @@ public class InputDYAListener extends InputListener {
 		
 			case 0: game.setScreen(game.LEVELS); break;
 			case 1: game.setScreen(game.INSTRUCTIONS); break;
-			//case 2: Gdx.app.exit(); break;
+			case 2: Gdx.app.exit(); break;
 			case 3: game.setScreen(game.MENU); break;
 			case 4: 
 				game.setLevel(CrazyBallsMain.levelx);
