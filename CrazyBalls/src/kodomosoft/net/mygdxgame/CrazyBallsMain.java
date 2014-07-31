@@ -30,7 +30,7 @@ public class CrazyBallsMain extends Game {
 	public static int levelx;
 //	public static Sound wavSound, menuSong;
 	
-	public static String levelRules[] = new String[12];
+	public String levelRules[] = new String[12];
 	/******************************************************/
 	
 	/*CONSTRUCTOR DE LA CLASE PRINCIPAL (EL GAME)*/
@@ -176,6 +176,10 @@ public class CrazyBallsMain extends Game {
 	 */
 	public SpriteBatch getSpriteBatch(){
 		return this.batch;
+	}
+	
+	public static int genRandom(){
+		return (int)(Math.random()*3)+1;
 	}
 	
 //	public void onBackPressed(){

@@ -21,7 +21,7 @@ public class PlayScreen extends AbstractScreen {
 	private Stage stage;
 	private float 	x = 0,
 					y = 0;
-	private int cantidad = 0,
+	private int cantidad = 5,
 				contador = 0;
 	private Image backButton, retryBtn, level1Title;
 	
@@ -41,7 +41,7 @@ public class PlayScreen extends AbstractScreen {
 		stage =  new Stage(400, 800, true, game.getSpriteBatch());
 		Gdx.input.setInputProcessor(stage);
 		
-		this.LevelActual = CrazyBallsMain.levelRules[game.getLevel()-1];
+		this.LevelActual = game.levelRules[game.getLevel()-1];
 		String BallsToLevels[] = this.LevelActual.split(",");
 		this.BallsToLevels=BallsToLevels;
 		this.cont=0;
@@ -70,7 +70,18 @@ public class PlayScreen extends AbstractScreen {
 		retryBtn.setPosition(20, 20);
 		stage.addActor(retryBtn);
 		
-		cantidad = game.getLevel()*5;
+		if (game.getLevel()>10)
+			cantidad = 15;
+		else if (game.getLevel()>8)
+			cantidad = 13;
+		else if (game.getLevel()>6)
+			cantidad = 11;
+		else if (game.getLevel()>4)
+			cantidad = 9;
+		else if (game.getLevel()>2)
+			cantidad = 7;
+		else if (game.getLevel()>0)
+			cantidad = 6;
 		
 		String varLevel = "level"+game.getLevel()+".png";
 		Texture level = CrazyBallsMain.MANAGER.get(varLevel, Texture.class);
@@ -89,7 +100,7 @@ public class PlayScreen extends AbstractScreen {
 		time.setPosition(15, stage.getHeight()/2);
 		stage.addActor(time);
 		
-		cantidad = game.getLevel()*5;
+//		cantidad = game.getLevel()*5;
 	}
 
 	@Override

@@ -88,7 +88,7 @@ public class LevelScreen extends AbstractScreen {
 		backButton.setPosition(50, 80);
 		stage.addActor(backButton);
 	}
-
+	
 	@Override
 	public void render(float delta) {
 		Gdx.gl.glClearColor(0f, 0f, 0f, 1f);

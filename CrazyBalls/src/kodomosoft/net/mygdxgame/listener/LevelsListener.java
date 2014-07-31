@@ -23,6 +23,9 @@ public class LevelsListener extends InputListener {
 	public boolean touchDown(InputEvent event, float x, float y, int pointer,
 			int button) {
 		this.button.setColor(1f, 1f, 1f, 0.5f);
+		game.setLevel(this.button.getLevel());
+		game.levelRules[game.getLevel()-1] = asigneLevelRule();
+//		System.out.println(game.levelRules[game.getLevel()-1]);
 		
 		return true;
 		
@@ -31,9 +34,19 @@ public class LevelsListener extends InputListener {
 	@Override
 	public void touchUp(InputEvent event, float x, float y, int pointer,
 			int button) {
-		game.setLevel(this.button.getLevel());
 		game.setScreen(new PlayScreen(game));
 		
+	}
+	
+	private String asigneLevelRule() {
+		String secuence = new String();
+		for (int i = 0; i < 5; i++) {
+			secuence += CrazyBallsMain.genRandom();
+			if (i < 4)
+				secuence += ",";
+		}
+		System.out.println("\n"+secuence);
+		return secuence;
 	}
 
 }

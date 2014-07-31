@@ -11,102 +11,113 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 
 /**
- * InputDYAListener es una Clase que a�ade un listener a los botones del menu principal
- * o a las pelotipas del Juego, segun sea el indice; siendo:
- * -1: el listener para las pelotitas (las Destrulle)
+ * InputDYAListener es una Clase que a�ade un listener a los botones del menu
+ * principal o a las pelotipas del Juego, segun sea el indice; siendo: 
+ * -1: el listener para las pelotitas (las Destrulle) 
  * 0: Cambia a la Screen de Niveles
- * 1: Cambia a la Screen de Instrucciones (INSTRUCTIONS)
- * 2: Sale de la Aplicacion (Boton Exit)
+ * 1: Cambia a la Screen de Instrucciones (INSTRUCTIONS) 
+ * 2: Sale de la Aplicacion (Boton Exit) 
  * 3: Cambia a la Screen del Menu Principal (MENU)
  * */
 
 public class InputDYAListener extends InputListener {
-	
-	/******VARIABLES DE INSTANCIA******/
+
+	/****** VARIABLES DE INSTANCIA ******/
 	private CrazyBallsMain game;
-	private int selector; 
+	private int selector;
 	private RemsBallActor ball;
 	private int ballNumber;
 	private Actor btn;
 	private Sound wavSound;
 	private static int countRemoveBalls = 0;
 	private static int rulesArray = 0;
+
 	/**********************************/
 
-	//Constructor cuando es una pelota
-		public InputDYAListener(RemsBallActor ball, int slc, int _ballNumber,CrazyBallsMain game ) {
-			this.ball = ball;
-			this.selector=slc;	
-			this.ballNumber = _ballNumber;
-			this.game=game;
-			wavSound = CrazyBallsMain.MANAGER.get("Pickup_remBall.wav", Sound.class);
-		}
+	// Constructor cuando es una pelota
+	public InputDYAListener(RemsBallActor ball, int slc, int _ballNumber,
+			CrazyBallsMain game) {
+		this.ball = ball;
+		this.selector = slc;
+		this.ballNumber = _ballNumber;
+		this.game = game;
+		wavSound = CrazyBallsMain.MANAGER
+				.get("Pickup_remBall.wav", Sound.class);
+	}
+
 	/**********************************/
 
-	//Constructor cuando es una pelota
-		public InputDYAListener(RemsBallActor ball, int slc) {
-			this.ball = ball;
-			this.selector=slc;
-		}
-		
-	//Constructor Cuando es un Boton del Menu Principal (Actor)
-		public InputDYAListener(Actor btn,CrazyBallsMain game , int slc) {
-			this.btn=btn;
-			this.game=game;
-			this.selector=slc;
-		}
+	// Constructor cuando es una pelota
+	public InputDYAListener(RemsBallActor ball, int slc) {
+		this.ball = ball;
+		this.selector = slc;
+	}
 
-		@Override
-		public boolean touchDown(InputEvent e,float x, float y, int pointer, int button)
-		{
-			if(selector!=-1 || selector == 4){
-				this.btn.setColor(1f, 0f, 0f, 0.5f);
-			}else{
-				this.ball.setColor(1f, 0f, 0f, 0.5f);
-				
-				wavSound.play();
-				ball.remove(); 
-				InputDYAListener.countRemoveBalls++; //acumulo las pelotas que se van quitando 
-				
-				String comprension = CrazyBallsMain.levelRules[(CrazyBallsMain.levelx - 1)];
-				String amor[] = comprension.split(",");
-				
-				System.out.print(Integer.parseInt(amor[rulesArray]));
-				System.out.print(rulesArray);
-				System.out.print(selector);
-				if(Integer.parseInt(amor[rulesArray]) == ballNumber)
-				{				
-					if(rulesArray == (amor.length - 1))
-					{
-						CrazyBallsMain.prefs.putBoolean("Level"+(CrazyBallsMain.levelx+1),true);
-						CrazyBallsMain.prefs.flush();
-						rulesArray = 0;
-						game.setScreen(game.LEVELS); 				
-					}						
-					rulesArray++;
-				}else
-				{
-					game.setScreen(new PlayScreen(game));
+	// Constructor Cuando es un Boton del Menu Principal (Actor)
+	public InputDYAListener(Actor btn, CrazyBallsMain game, int slc) {
+		this.btn = btn;
+		this.game = game;
+		this.selector = slc;
+	}
+
+	@Override
+	public boolean touchDown(InputEvent e, float x, float y, int pointer,
+			int button) {
+		if (selector != -1 || selector == 4) {
+			this.btn.setColor(1f, 0f, 0f, 0.5f);
+		} else {
+			this.ball.setColor(1f, 0f, 0f, 0.5f);
+			
+			wavSound.play();
+			ball.remove();
+			InputDYAListener.countRemoveBalls++; // acumulo las pelotas que se
+													// van quitando
+
+			String comprension = game.levelRules[game.getLevel()-1];
+			String amor[] = comprension.split(",");
+
+			System.out.print(Integer.parseInt(amor[rulesArray]));
+			System.out.print(rulesArray);
+			System.out.print(selector);
+			if (Integer.parseInt(amor[rulesArray]) == ballNumber) {
+				if (rulesArray == (amor.length - 1)) {
+					CrazyBallsMain.prefs.putBoolean("Level"
+							+ (CrazyBallsMain.levelx + 1), true);
+					CrazyBallsMain.prefs.flush();
 					rulesArray = 0;
+					game.setScreen(game.LEVELS);
 				}
-			}
-			return true;
-		}
-
-		@Override
-		public void touchUp(InputEvent event, float x, float y, int pointer,
-				int button) {
-			switch(selector){
-		
-			case 0: game.setScreen(game.LEVELS); break;
-			case 1: game.setScreen(game.INSTRUCTIONS); break;
-			case 2: Gdx.app.exit(); break;
-			case 3: game.setScreen(game.MENU); break;
-			case 4: 
-				game.setLevel(CrazyBallsMain.levelx);
+				rulesArray++;
+			} else {
 				game.setScreen(new PlayScreen(game));
-				break;
+				rulesArray = 0;
 			}
-			super.touchUp(event, x, y, pointer, button);
 		}
+		return true;
+	}
+
+	@Override
+	public void touchUp(InputEvent event, float x, float y, int pointer,
+			int button) {
+		switch (selector) {
+
+		case 0:
+			game.setScreen(game.LEVELS);
+			break;
+		case 1:
+			game.setScreen(game.INSTRUCTIONS);
+			break;
+		case 2:
+			Gdx.app.exit();
+			break;
+		case 3:
+			game.setScreen(game.MENU);
+			break;
+		case 4:
+			game.setLevel(CrazyBallsMain.levelx);
+			game.setScreen(new PlayScreen(game));
+			break;
 		}
+		super.touchUp(event, x, y, pointer, button);
+	}
+}
