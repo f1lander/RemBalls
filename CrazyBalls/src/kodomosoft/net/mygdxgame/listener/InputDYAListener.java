@@ -2,7 +2,7 @@ package kodomosoft.net.mygdxgame.listener;
 
 import kodomosoft.net.mygdxgame.CrazyBallsMain;
 import kodomosoft.net.mygdxgame.actor.RemsBallActor;
-import kodomosoft.net.mygdxgame.screen.levels.PlayScreen;
+import kodomosoft.net.mygdxgame.screen.PlayScreen;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;

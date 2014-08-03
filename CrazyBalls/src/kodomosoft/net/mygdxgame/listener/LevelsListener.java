@@ -2,7 +2,7 @@ package kodomosoft.net.mygdxgame.listener;
 
 import kodomosoft.net.mygdxgame.CrazyBallsMain;
 import kodomosoft.net.mygdxgame.actor.ButtonImage;
-import kodomosoft.net.mygdxgame.screen.levels.PlayScreen;
+import kodomosoft.net.mygdxgame.screen.PlayScreen;
 
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
@@ -40,9 +40,23 @@ public class LevelsListener extends InputListener {
 	
 	private String asigneLevelRule() {
 		String secuence = new String();
-		for (int i = 0; i < 5; i++) {
+		int x = game.getLevel();
+		if(x>10)
+			x=10;
+		else if(x>8)
+			x=9;
+		else if(x>6)
+			x=8;
+		else if(x>4)
+			x=7;
+		else if(x>2)
+			x=5;
+		else if(x>0)
+			x=3;
+		
+		for (int i = 0; i < x; i++) {
 			secuence += CrazyBallsMain.genRandom();
-			if (i < 4)
+			if (i < x-1)
 				secuence += ",";
 		}
 		System.out.println("\n"+secuence);

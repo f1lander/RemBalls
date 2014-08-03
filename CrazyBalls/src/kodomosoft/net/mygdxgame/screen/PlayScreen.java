@@ -1,11 +1,9 @@
-package kodomosoft.net.mygdxgame.screen.levels;
+package kodomosoft.net.mygdxgame.screen;
 
 import kodomosoft.net.mygdxgame.CrazyBallsMain;
 import kodomosoft.net.mygdxgame.actor.RemsBallActor;
 import kodomosoft.net.mygdxgame.actor.TimerActor;
 import kodomosoft.net.mygdxgame.listener.InputDYAListener;
-import kodomosoft.net.mygdxgame.screen.AbstractScreen;
-import kodomosoft.net.mygdxgame.screen.LevelScreen;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
