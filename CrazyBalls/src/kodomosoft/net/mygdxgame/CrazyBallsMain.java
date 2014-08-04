@@ -125,18 +125,18 @@ public class CrazyBallsMain extends Game {
 		 
 		*/
 		
-		levelRules[0] = "1,2,3";
-		levelRules[1] = "1,1,3,2";
-		levelRules[2] = "1,2,2,3,3,2";		
-		levelRules[3] = "2,3,1,3,3,3,1,2";
-		levelRules[4] = "1,3,1,3,2,3,3,2,2,3";
-		levelRules[5] = "3,1,2,3,1,2,3,3,3,3,1,1";
-		levelRules[6] = "3,2,2,2,1,1,1,2,2,3,3,2,3,2,1";
-		levelRules[7] = "3,3,2,2,2,2,2,3,3,3,1,1,1,1,2,2,2";
-		levelRules[8] = "#Level1:1,2,3";
-		levelRules[9] = "#Level1:1,2,3";
-		levelRules[10] = "#Level1:1,2,3";
-		levelRules[11] = "#Level1:1,2,3";
+//		levelRules[0] = "1,2,3";
+//		levelRules[1] = "1,1,3,2";
+//		levelRules[2] = "1,2,2,3,3,2";		
+//		levelRules[3] = "2,3,1,3,3,3,1,2";
+//		levelRules[4] = "1,3,1,3,2,3,3,2,2,3";
+//		levelRules[5] = "3,1,2,3,1,2,3,3,3,3,1,1";
+//		levelRules[6] = "3,2,2,2,1,1,1,2,2,3,3,2,3,2,1";
+//		levelRules[7] = "3,3,2,2,2,2,2,3,3,3,1,1,1,1,2,2,2";
+//		levelRules[8] = "#Level1:1,2,3";
+//		levelRules[9] = "#Level1:1,2,3";
+//		levelRules[10] = "#Level1:1,2,3";
+//		levelRules[11] = "#Level1:1,2,3";
 	}
 
 	@Override

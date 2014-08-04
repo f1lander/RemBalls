@@ -27,13 +27,13 @@ public class TimerActor extends Actor{
 	private void run() throws InterruptedException{
 		Thread.sleep(2);
 		
-		if(compare("<",getMil(), 78)){
+		if(compare(getMil(), "<", 78)){
 			Mil+=2;
 		}else{
 			++Mil;
 		}
 		
-		if(compare("=", getMil(), 99)){
+		if(compare(getMil(), "=", 99)){
 			++Seg;
 			Mil=0;
 		}
@@ -47,7 +47,7 @@ public class TimerActor extends Actor{
 		return Mil;
 	}
 	
-	private boolean compare(String opt, int n1, int n2){
+	private boolean compare(int n1, String opt, int n2){
 		switch(opt){
 		case "=": return n1==n2;
 		case "!": return n1!=n2;

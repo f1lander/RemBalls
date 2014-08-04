@@ -3,6 +3,7 @@ package kodomosoft.net.mygdxgame.listener;
 import kodomosoft.net.mygdxgame.CrazyBallsMain;
 import kodomosoft.net.mygdxgame.actor.ButtonImage;
 import kodomosoft.net.mygdxgame.screen.PlayScreen;
+import kodomosoft.net.mygdxgame.screen.SecuenceScreen;
 
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
@@ -34,7 +35,7 @@ public class LevelsListener extends InputListener {
 	@Override
 	public void touchUp(InputEvent event, float x, float y, int pointer,
 			int button) {
-		game.setScreen(new PlayScreen(game));
+		game.setScreen(new SecuenceScreen(game));
 		
 	}
 	
