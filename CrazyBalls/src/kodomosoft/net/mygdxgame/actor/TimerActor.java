@@ -1,5 +1,6 @@
 package kodomosoft.net.mygdxgame.actor;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -39,15 +40,15 @@ public class TimerActor extends Actor{
 		}
 	}
 	
-	private int getSeg(){
+	public int getSeg(){
 		return Seg;
 	}
 	
-	private int getMil(){
+	public int getMil(){
 		return Mil;
 	}
 	
-	private boolean compare(int n1, String opt, int n2){
+	public boolean compare(int n1, String opt, int n2){
 		switch(opt){
 		case "=": return n1==n2;
 		case "!": return n1!=n2;
@@ -63,5 +64,6 @@ public class TimerActor extends Actor{
 	public void draw(Batch batch, float parentAlpha) {
 		super.draw(batch, parentAlpha);
 		font.drawMultiLine(batch, getSeg()+":"+getMil(), getX(), getY());
+		font.setColor(Color.BLACK);
 	}
 }

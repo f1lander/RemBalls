@@ -5,6 +5,8 @@ import kodomosoft.net.mygdxgame.actor.RemsBallActor;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Timer;
 import com.badlogic.gdx.utils.Timer.Task;
@@ -13,7 +15,15 @@ public class SecuenceScreen extends AbstractScreen {
 
 	private Stage stage;
 	private int cont;
+	private RemsBallActor[] Balls;
 	
+	private int he = 0;
+	private int ii = 0;
+	private int w = 105;
+	private int limit = 4;
+	private int rpw = 40;
+	private int rph = 450;
+
 	public SecuenceScreen(CrazyBallsMain game) {
 		super(game);
 		
@@ -25,28 +35,16 @@ public class SecuenceScreen extends AbstractScreen {
 		stage = new Stage(400, 800, true, game.getSpriteBatch());
 		Gdx.input.setInputProcessor(stage);
 		
+		cont=0;
+		
 		//Tomamos el orden del level de game.levelRules, lo partimos
 		//y los asignamos al arreglo temporal de String "temp[]"
-		String temp[] = game.levelRules[game.getLevel()-1].split(","); // le indicamos que haga el corte en cada ','
+		String temp[] = CrazyBallsMain.levelRules[game.getLevel()-1].split(","); // le indicamos que haga el corte en cada ','
 		
-		//Creamos las variables x & y para controlar la posicion de las bolas en la pantalla
-		int x = 0, // x controla la posicion en el eje 'x'
-			y = (int) (stage.getHeight()/2*1.4); // y controla la posicion en el eje 'y'
+		Balls = new RemsBallActor[temp.length];
 		
-		//ciclo for para organizar las pelotas, segun el orden del level
-		for(int i =0; i<temp.length; i++){
-			x+=100;
-			
-			if(i==0)
-				x=50;
-			
-			int j = Integer.parseInt(temp[i]);
-			if(x>stage.getWidth()-80){
-				y-=100;
-				x=50;
-			}
-			createBall(j, x, y);
-		}
+		inicialiceSecuence(temp);
+		
 	}
 	
 	@Override
@@ -58,7 +56,7 @@ public class SecuenceScreen extends AbstractScreen {
 		stage.draw();
 		delay(1, game.getLevel());
 		if(cont>0){
-			game.setScreen(new PlayScreen(game));
+			game.setScreen(game.GAME);
 		}
 		
 	}
@@ -80,12 +78,6 @@ public class SecuenceScreen extends AbstractScreen {
 		stage.dispose();
 	}
 	
-	private void createBall(int id, int x, int y){
-		RemsBallActor ball = new RemsBallActor(x, y, id);
-		ball.setVelocidad(0, 0);
-		stage.addActor(ball);
-	}
-	
 	private void delay(final int indice, double seg) {
 		float delay = (float) seg; // seconds
 
@@ -96,6 +88,27 @@ public class SecuenceScreen extends AbstractScreen {
 				cont = indice;
 			}
 		}, delay);
+	}
+	
+	private void inicialiceSecuence(String[] temp) {
+		for (int i = 0; i < Balls.length; i++) {
+			
+			int wi = ii * w; //105
+			
+			if(wi == w*limit){ //315
+				he += (w+3);
+				wi = 0;
+				ii = 0;
+			}
+			
+			Balls[i] = new RemsBallActor(rpw + wi, rph - he, Integer.parseInt(temp[i]));
+			Balls[i].setVelocidad(0, 0);
+			stage.addActor(Balls[i]);
+			
+			ii++;
+		
+		}
+		he=0; ii=0;
 	}
 
 }

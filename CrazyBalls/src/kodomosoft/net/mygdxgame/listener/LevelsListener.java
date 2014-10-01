@@ -25,7 +25,7 @@ public class LevelsListener extends InputListener {
 			int button) {
 		this.button.setColor(1f, 1f, 1f, 0.5f);
 		game.setLevel(this.button.getLevel());
-		game.levelRules[game.getLevel()-1] = asigneLevelRule();
+		CrazyBallsMain.levelRules[game.getLevel()-1] = asigneLevelRule();
 //		System.out.println(game.levelRules[game.getLevel()-1]);
 		
 		return true;
@@ -39,9 +39,17 @@ public class LevelsListener extends InputListener {
 		
 	}
 	
+	/**
+	 * Crea una Secuencia aleatoria de numeros que son las reglas del level
+	 * y lo devuelve todo como un String al arreglo levelRules de la clase principal.
+	 * @author zerokull
+	 * @return secuence, seceunce es la secuencia aleatoria que genero para el nivel designado.
+	 */
 	private String asigneLevelRule() {
 		String secuence = new String();
 		int x = game.getLevel();
+		
+		//Segun el nivel en que estemos asigna la cantidad de pelotas en la secuencia
 		if(x>10)
 			x=10;
 		else if(x>8)
@@ -56,7 +64,7 @@ public class LevelsListener extends InputListener {
 			x=3;
 		
 		for (int i = 0; i < x; i++) {
-			secuence += CrazyBallsMain.genRandom();
+			secuence += CrazyBallsMain.genRandom(3,1);
 			if (i < x-1)
 				secuence += ",";
 		}

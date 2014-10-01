@@ -4,6 +4,8 @@ import kodomosoft.net.mygdxgame.screen.AbstractScreen;
 import kodomosoft.net.mygdxgame.screen.Instructions;
 import kodomosoft.net.mygdxgame.screen.LevelScreen;
 import kodomosoft.net.mygdxgame.screen.MainScreen;
+import kodomosoft.net.mygdxgame.screen.PlayScreen;
+import kodomosoft.net.mygdxgame.screen.SecuenceScreen;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
@@ -23,26 +25,31 @@ public class CrazyBallsMain extends Game {
 	/****************VARIABLES DE INSTANCIA****************/
 	public static AssetManager MANAGER;// = new AssetManager();
 	private SpriteBatch batch;
-	public final AbstractScreen LEVELS, MENU, INSTRUCTIONS;
+	public final AbstractScreen GAME, LEVELS, SECUENCE, MENU, INSTRUCTIONS;
 	private int Level=0;
 	public static Preferences prefs;
 	public static int countBallslevel;
 	public static int levelx;
+	public static int rulesArray = 0;
+	public static int[] SecondsLimits = new int[12];
 //	public static Sound wavSound, menuSong;
 	
-	public String levelRules[] = new String[12];
+	public static String levelRules[] = new String[12];
 	/******************************************************/
 	
 	/*CONSTRUCTOR DE LA CLASE PRINCIPAL (EL GAME)*/
 	public CrazyBallsMain() {
+		GAME = new PlayScreen(this);
 		LEVELS = new LevelScreen(this);
+		SECUENCE = new SecuenceScreen(this);
 		MENU = new MainScreen(this);
 		INSTRUCTIONS = new Instructions(this);
 	}
 	
 	void initPrefs()
 	{
-		prefs = Gdx.app.getPreferences("scores.txt");		
+		prefs = Gdx.app.getPreferences("scores.txt");
+//		prefs.clear();
 	}
 	
 	@Override
@@ -54,7 +61,9 @@ public class CrazyBallsMain extends Game {
 		// vamos a usar en todo nuestro juego
 		batch = new SpriteBatch();
 
-		prefs.putBoolean("Level1", true);
+		for(int j=1; j<=1; j++){
+		prefs.putBoolean("Level"+j, true);
+		}
 		prefs.flush();
 		// Gdx.app.error("sds", "prefserror");
 
@@ -137,6 +146,11 @@ public class CrazyBallsMain extends Game {
 //		levelRules[9] = "#Level1:1,2,3";
 //		levelRules[10] = "#Level1:1,2,3";
 //		levelRules[11] = "#Level1:1,2,3";
+		
+		String[] nums = "3,3,5,5,7,7,9,9,11,11,13,13".split(",");
+		
+		for(int i=0; i<SecondsLimits.length; i++)
+		SecondsLimits[i] = Integer.parseInt(nums[i]);
 	}
 
 	@Override
@@ -178,8 +192,15 @@ public class CrazyBallsMain extends Game {
 		return this.batch;
 	}
 	
-	public static int genRandom(){
-		return (int)(Math.random()*3)+1;
+	/**
+	 * Metodo que retorna un numero aleatorio entre min & max
+	 * @author zerokull
+	 * @param max el numero maximo del rango
+	 * @param min el numero minimo del rango
+	 * @return (int)(Math.random()*max)+min
+	 */
+	public static int genRandom(int max, int min){
+		return (int)(Math.random()*max)+min;
 	}
 	
 //	public void onBackPressed(){

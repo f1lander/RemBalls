@@ -23,7 +23,7 @@ public class PlayScreen extends AbstractScreen {
 				contador = 0;
 	private Image backButton, retryBtn, level1Title;
 	
-	private TimerActor time;
+	public static TimerActor time;
 	
 	private int cont = 0;
 	private String LevelActual;
@@ -39,10 +39,11 @@ public class PlayScreen extends AbstractScreen {
 		stage =  new Stage(400, 800, true, game.getSpriteBatch());
 		Gdx.input.setInputProcessor(stage);
 		
-		this.LevelActual = game.levelRules[game.getLevel()-1];
+		this.LevelActual = CrazyBallsMain.levelRules[game.getLevel()-1];
 		String BallsToLevels[] = this.LevelActual.split(",");
 		this.BallsToLevels=BallsToLevels;
-		this.cont=0;
+		cont=0;
+		CrazyBallsMain.rulesArray=0;
 		
 		//Crear Fondo
 		Texture txt = CrazyBallsMain.MANAGER.get("playScreen.png", Texture.class);
@@ -94,11 +95,10 @@ public class PlayScreen extends AbstractScreen {
 		CrazyBallsMain.levelx = game.getLevel();
 		
 		// Aniadimos el Timer
-		time = new TimerActor(new BitmapFont());
-		time.setPosition(15, stage.getHeight()/2);
+		time = new TimerActor(new BitmapFont(Gdx.files.internal("fonts/ArialBlack.fnt")));
+		time.setPosition(stage.getWidth()/2*1.3f, stage.getHeight()/2*1.9f);
 		stage.addActor(time);
 		
-//		cantidad = game.getLevel()*5;
 	}
 
 	@Override
@@ -110,28 +110,16 @@ public class PlayScreen extends AbstractScreen {
 		
 		if(contador<cantidad){
 			createBall();
-//			contador++;
 		}
 		
 		stage.draw();
 	}
 
-//	private void createBall2() {
-//		try{
-//			x = ((0.03f * stage.getWidth() + 
-//					0.07f * stage.getWidth() * (float) Math.random()));
-//				
-//			y = ((0.016f * stage.getHeight() + 
-//					0.8f * stage.getHeight() * (float) Math.random()));
-//			}catch(Exception e){
-//				
-//			}
-//			RemsBallActor ball = new RemsBallActor(x, y);
-//			ball.setVelocidad(-200, 200);
-//			stage.addActor(ball);
-//	}
-
-	//Metodo para crea nuevas pelotas
+	/**
+	 * Crea nuevas pelotas
+	 * y asignarlas al esenario en una posicion aleatoria.
+	 * @author zerokull
+	 */
 	private void createBall(){
 		
 		try{
@@ -150,17 +138,22 @@ public class PlayScreen extends AbstractScreen {
 		}
 		
 		int face = generateFaceBall();
-		if(face>0){
+//		if(face>0){
 			RemsBallActor ball = new RemsBallActor(x, y, face);
 			ball.setVelocidad(-300, 300);
 			stage.addActor(ball);
 			ball.addListener(new InputDYAListener(ball, -1, face, game));
 			contador++;
-		}
+//		}
 	}
 	
+	/**
+	 * Metodo que genera almenos las pelotas que se debes atrapar y algunas mas.
+	 * @author zerokull
+	 * @return face, face es el indice que clasifica los tres tipos de pelota.
+	 */
 	private int generateFaceBall(){
-		int face = (int) (4 * Math.random());
+		int face = CrazyBallsMain.genRandom(3, 1);
 		if(cont<BallsToLevels.length){
 			face = Integer.parseInt(BallsToLevels[cont]);
 			cont++;
@@ -174,7 +167,7 @@ public class PlayScreen extends AbstractScreen {
 	public void resize(int width, int height) {
 		stage.setViewport(400, 800, true);
 		
-		time.setPosition(15, stage.getHeight()/2);
+		time.setPosition(stage.getWidth()/2*1.3f, stage.getHeight()/2*1.9f);
 	}
 
 	@Override
